@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CPresentacion {
         return presServ.buscarPresentacion(id);
     }
     
-    @GetMapping ("/crear")
+    @PostMapping ("/crear")
     public String agregarPresentacion (@RequestBody Presentacion pres){
         presServ.crearPresentacion(pres);
         return "La Presentacion fue creada exitosamente";
@@ -48,8 +49,9 @@ public class CPresentacion {
     
     //otra forma de editar Presentacion
     @PutMapping("/editar")
-    public void updatePresentacion(@RequestBody Presentacion pres){
+    public String updatePresentacion(@RequestBody Presentacion pres){
         presServ.editarPresentacion(pres);
+        return "La Presentacion fue editada exitosamente";
     }
     
 }

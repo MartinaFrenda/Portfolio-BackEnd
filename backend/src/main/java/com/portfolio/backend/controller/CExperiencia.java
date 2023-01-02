@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CExperiencia {
         return expeServ.buscarExperiencia(id);
     }
     
-    @GetMapping ("/crear")
+    @PostMapping ("/crear")
     public String agregarExperiencia (@RequestBody Experiencia exp){
         expeServ.crearExperiencia(exp);
         return "La Experiencia fue creada exitosamente";
@@ -48,8 +49,9 @@ public class CExperiencia {
     
     //otra forma de editar Experiencia
     @PutMapping("/editar")
-    public void updateExperiencia(@RequestBody Experiencia exp){
+    public String updateExperiencia(@RequestBody Experiencia exp){
         expeServ.editarExperiencia(exp);
+        return "La Experiencia fue editada exitosamente";
     }
     
 }

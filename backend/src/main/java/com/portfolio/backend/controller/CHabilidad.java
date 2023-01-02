@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CHabilidad {
         return habiServ.buscarHabilidad(id);
     }
     
-    @GetMapping ("/crear")
+    @PostMapping ("/crear")
     public String agregarHabilidad (@RequestBody Habilidad habi){
         habiServ.crearHabilidad(habi);
         return "La habilidad fue creada exitosamente";
@@ -48,8 +49,9 @@ public class CHabilidad {
     
     //otra forma de editar persona
     @PutMapping("/editar")
-    public void updateHabilidad(@RequestBody Habilidad habi){
+    public String updateHabilidad(@RequestBody Habilidad habi){
         habiServ.editarHabilidad(habi);
+        return "La habilidad fue editada exitosamente";
     }
     
 }

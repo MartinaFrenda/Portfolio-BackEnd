@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CProyecto {
         return proyServ.buscarProyecto(id);
     }
     
-    @GetMapping ("/crear")
+    @PostMapping ("/crear")
     public String agregarProyecto (@RequestBody Proyecto proy){
         proyServ.crearProyecto(proy);
         return "El Proyecto fue creado exitosamente";
@@ -48,8 +49,9 @@ public class CProyecto {
     
     //otra forma de editar proyecto
     @PutMapping("/editar")
-    public void updateProyecto(@RequestBody Proyecto proy){
+    public String updateProyecto(@RequestBody Proyecto proy){
         proyServ.editarProyecto(proy);
+        return "El Proyecto fue editada exitosamente";
     }
     
 }

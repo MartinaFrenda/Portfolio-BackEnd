@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,19 +29,19 @@ public class CPersona {
         return persoServ.verPersonas();
     }
     
-    @GetMapping ("/ver/(id)")
+    @GetMapping ("/ver/{id}")
     @ResponseBody
     public Persona verPersona(@PathVariable int id){
         return persoServ.buscarPersona(id);
     }
     
-    @GetMapping ("/crear")
+    @PostMapping ("/crear")
     public String agregarPersona (@RequestBody Persona pers){
         persoServ.crearPersona(pers);
         return "La persona fue creada exitosamente";
     }
     
-    @DeleteMapping ("/borrar/(id)")
+    @DeleteMapping ("/borrar/{id}")
     public String eliminarPersona(@PathVariable int id){
         persoServ.borrarPersona(id);
         return "La persona fue borrada correctamente";
@@ -48,8 +49,9 @@ public class CPersona {
     
     //otra forma de editar persona
     @PutMapping("/editar")
-    public void updatePersona(@RequestBody Persona pers){
+    public String updatePersona(@RequestBody Persona pers){
         persoServ.editarPersona(pers);
+        return "la persona se actualizo con exito";
     }
     
 }
